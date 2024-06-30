@@ -76,7 +76,7 @@ Nele escolhemos quais títulos serão incluídos, se haverá botões, quantas su
 ```
 
 ### Filtro ```safe``` no Jinja2:
-    - Jinja2: Ferramenta que ajuda a preencher modelos de HTML com dados dinâmicos. Com Jinja2, você pode usar a sintaxe de template (como um molde) para incluir variáveis e lógica no seu HTML, facilitando a criação de páginas web dinâmicas e interativas.
+    - Jinja 2: Ferramenta que ajuda a preencher modelos de HTML com dados dinâmicos. Com Jinja2, você pode usar a sintaxe de template (como um molde) para incluir variáveis e lógica no seu HTML, facilitando a criação de páginas web dinâmicas e interativas.
 
 O filtro safe é usado para marcar uma string como segura para ser renderizada como HTML sem escapamento automático.
 
@@ -92,10 +92,10 @@ O filtro safe é usado para marcar uma string como segura para ser renderizada c
   {% set message = "<strong>Isso é importante!</strong>" %}
    <p>{{ message | safe }}</p>
 ```
-Nesse caso, irá gerar uma devolutiva: <strong>Isso é importante!</strong> (em negrito) sem que sea corrompido.
+Nesse caso, irá gerar uma devolutiva: <strong>Isso é importante!</strong> (em negrito) sem que seja corrompido.
 
 
-### Uso da Sintaxe Jinja2 para Loop e Renderização de Tabelas: 
+### Uso da Sintaxe Jinja 2 para Loop e Renderização de Tabelas: 
 
 Estratégia para a renderização dinâmica de tabelas com base nos dados fornecidos no arquivo em python (será abordado posteriormente), tornando o código funcional e dinâmico. A implementação correta dos loops Jinja2 garante que qualquer conjunto de resultados seja exibido corretamente na tabela. Ele utiliza estratégias para percorrer cada linha da lista desejada
 
