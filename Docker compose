@@ -1,0 +1,57 @@
+services:
+  app:
+    build:
+      context: . # Diretório onde está localizado o Dockerfile
+      dockerfile: Dockerfile-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      # Variáveis de ambiente no arquivo .env
+      FLASK_ENV: ${FLASK_ENV}
+      FLASK_APP: ${FLASK_APP}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./app:/app # Mapeamento do diretório local ./app para /app do contêiner
+    networks:
+      - backend
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      # Mapeamento da porta local 5433 para a porta do contêiner 5432
+      - "5433:5432"
+    networks:
+      - backend
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_SERVER_JSON_FILE: /pgadmin4/servers.json
+    ports:
+      # Mapeamento da porta local 16543 para a porta do contêiner 80
+      - "16543:80"
+    volumes:
+      # Mapeamento p/ iniciar o pgAdmin c/ as configs em pgadmin-servers.json
+      - ./pgadmin-servers.json:/pgadmin4/servers.json
+    depends_on:
+      - db
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge # Permite que os contêineres se comuniquem entre si
