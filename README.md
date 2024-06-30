@@ -17,7 +17,7 @@ Nele escolhemos quais títulos serão incluídos, se haverá botões, quantas su
 
 
 # CSS 
-Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome já nos indica) e aparência do site. CSS é associada ao código HTML por um link dentro do index.html
+Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome já nos indica) e aparência do site. CSS é associada ao código HTML por um link dentro do ``` <head></head> ``` do  index.html 
 
 ```ruby
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
