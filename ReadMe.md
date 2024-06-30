@@ -50,7 +50,7 @@ Utilize o tutorial disponivel em [https://youtu.be/L_2l8XTCPAE] para instalar o 
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-plain-wordmark.svg" height="95" width="95" />
 </h1>
 
- # [Descrição do Projeto](#descrição-do-projeto)
+ # Descrição do Projeto
  
   Projeto baseado em uma aplicação web com acesso á banco de dados SQL 
 
@@ -74,13 +74,90 @@ Nele escolhemos quais títulos serão incluídos, se haverá botões, quantas su
 ```ruby
   <input type="text" required name="comandoSQL" placeholder="Digite seu comando SQL">
 ```
+
 ### Filtro ```safe``` no Jinja2:
-   obs:
-  * Jinja2: Ferramenta que ajuda a preencher modelos de HTML com dados dinâmicos. Com Jinja2, você pode usar a sintaxe de template para 
-  incluir variáveis e lógica no seu HTML, facilitando a criação de páginas web dinâmicas e interativas.
+    - Jinja2: Ferramenta que ajuda a preencher modelos de HTML com dados dinâmicos. Com Jinja2, você pode usar a sintaxe de template (como um molde) para incluir variáveis e lógica no seu HTML, facilitando a criação de páginas web dinâmicas e interativas.
 
 O filtro safe é usado para marcar uma string como segura para ser renderizada como HTML sem escapamento automático.
 
+* exemplo sem ```'safe'```:
+  ```ruby
+  {% set message = "<strong>Isso é importante!</strong>" %}
+  <p>{{ message }}</p>
+  ```
+  Pode gerar uma devolutiva:  < strong> Isso é importante! </ strong>
+  
+* exemplo com ```'safe'```: 
+```ruby
+  {% set message = "<strong>Isso é importante!</strong>" %}
+   <p>{{ message | safe }}</p>
+```
+Nesse caso, irá gerar uma devolutiva: <strong>Isso é importante!</strong> (em negrito) sem que sea corrompido.
+
+
+### Uso da Sintaxe Jinja2 para Loop e Renderização de Tabelas: 
+
+Estratégia para a renderização dinâmica de tabelas com base nos dados fornecidos no arquivo em python (será abordado posteriormente), tornando o código funcional e dinâmico. A implementação correta dos loops Jinja2 garante que qualquer conjunto de resultados seja exibido corretamente na tabela. Ele utiliza estratégias para percorrer cada linha da lista desejada
+
+```ruby
+  <thead>
+    <tr>
+        {% for coluna in colunas %} // Percorre cada linha da lista desejada.
+            <th>{{ coluna }}</th> // Atribui um título para cada coluna.
+        {% endfor %}
+    </tr>
+</thead> 
+```
+Também se utiliza para compor o corpo da tabela, da seguinte forma:
+```ruby
+<tbody>
+    {% for row in consulta_resultado %} // Percorre cada linha na lista
+        <tr>                            // Para cada linha, ele cria uma nova linha na tabela
+            {% for value in row %}      // Percorre cada nova linha e cria uma célula de dados
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</tbody>
+```
+- Exemplo de funcionando (dado pelo chat GPT)
+```ruby
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Notas</title>
+</head>
+<body>
+    <h1>Relatório de Notas dos Alunos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matemática</th>
+                <th>História</th>
+                <th>Ciências</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice</td>
+                <td>85</td>
+                <td>78</td>
+                <td>92</td>
+            </tr>
+            <tr>
+                <td>Charlie</td>
+                <td>95</td>
+                <td>92</td>
+                <td>85</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+```
 
 # CSS 
 Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome já nos indica) e aparência do site. CSS é associada ao código HTML por um link dentro do ``` <head></head> ``` do  index.html 
