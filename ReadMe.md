@@ -129,8 +129,9 @@ Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome 
 ```
 
 # Python
+A linguagem python é utilizada pra se atribuir interatividade.
 
-
+###
 
 # [Funcionalidades e Demonstração da Aplicação](#funcionalidades-e-demonstração-da-aplicação)
 
