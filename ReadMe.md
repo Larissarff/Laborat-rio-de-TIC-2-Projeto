@@ -1,4 +1,4 @@
-# Projeto 02 - Mini-projeto Web utilizando Docker + PostgreSQL
+ty# Projeto 02 - Mini-projeto Web utilizando Docker + PostgreSQL
 
 ## Documentação para a instalação e configuração necessárias para a execução do mini-projeto Web.
 
@@ -168,17 +168,22 @@ Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome 
 
 # Python
 
+
+
 # [Funcionalidades e Demonstração da Aplicação](#funcionalidades-e-demonstração-da-aplicação)
-# [Acesso ao Projeto](#acesso-ao-projeto)
+
+
+
 # [Tecnologias utilizadas](#tecnologias-utilizadas)
-  - O Docker é uma plataforma de código aberto que permite a criação, distribuição e execução de aplicativos em contêineres (Contêineres são unidades leves e portáteis, formados a partir de imagens, que encapsulam
-uma aplicação e todas as suas dependências, garantindo que ela possa ser executada de
-maneira consistente em qualquer ambiente).
+  - O Docker é uma plataforma de código aberto que permite a criação, distribuição e execução de aplicativos em contêineres 		- (Contêineres são unidades leves e portáteis, formados a partir de imagens, que encapsulam uma aplicação e todas as suas dependências, garantindo que ela possa ser executada de maneira consistente em qualquer ambiente).
+
   - Contudo, para este projeto, foi adotada uma abordagem mais indicada e utilizada em
 ambientes profissionais que facilita a criação dos contêineres e seu gerenciamento: o [Docker
-Compose](#Docker-Compose). Essa ferramenta do Docker visa orquestrar a criação dos contêineres e a ordem no
-qual são criados, de forma que os recursos necessários para um container funcionar
+Compose](#Docker-Compose).
+		* Basicamente, o Docker Compose tem sua maior utilidade na sua capacidade de orquestrar mais serviços, inciando-os de forma predefinida e adequada, além de oferecer uma configuração unificada e escalonamento simples (facilitando a manutenção e a leitura, e sendo possível aumentar o número de instâncias de um serviço sob demanda). Em suma, ele torna bem mais fácl gerenciar ambientes complexos e com múltiplos serviços interdependentes.
 adequadamente sejam seguidos na devida ordem.
+
+ analisar o código
 
  ``Docker`` ``Python`` ``HTML`` ``CSS`` ``SQL``
 
