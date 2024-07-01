@@ -52,7 +52,7 @@ Utilize o tutorial disponivel em [https://youtu.be/L_2l8XTCPAE] para instalar o 
 
  # Descrição do Projeto
  
-  Projeto baseado em uma aplicação web com acesso á banco de dados SQL 
+  Projeto baseado em uma mini aplicação web com acesso á banco de dados SQL.
 
 # HTML 
 O código em HTML é como a alma do site, ele serve como a estrutura central da aplicação web.
@@ -102,8 +102,8 @@ Estratégia para a renderização dinâmica de tabelas com base nos dados fornec
 ```ruby
   <thead>
     <tr>
-        {% for coluna in colunas %} // Percorre cada linha da lista desejada.
-            <th>{{ coluna }}</th> // Atribui um título para cada coluna.
+        {% for coluna in colunas %} # Percorre cada linha da lista desejada.
+            <th>{{ coluna }}</th>   # Atribui um título para cada coluna.
         {% endfor %}
     </tr>
 </thead> 
@@ -111,52 +111,14 @@ Estratégia para a renderização dinâmica de tabelas com base nos dados fornec
 Também se utiliza para compor o corpo da tabela, da seguinte forma:
 ```ruby
 <tbody>
-    {% for row in consulta_resultado %} // Percorre cada linha na lista
-        <tr>                            // Para cada linha, ele cria uma nova linha na tabela
-            {% for value in row %}      // Percorre cada nova linha e cria uma célula de dados
+    {% for row in consulta_resultado %} # Percorre cada linha na lista
+        <tr>                            # Para cada linha, ele cria uma nova linha na tabela
+            {% for value in row %}      # Percorre cada nova linha e cria uma célula de dados
                 <td>{{ value }}</td>
             {% endfor %}
         </tr>
     {% endfor %}
 </tbody>
-```
-- Exemplo de funcionando (dado pelo chat GPT)
-```ruby
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Notas</title>
-</head>
-<body>
-    <h1>Relatório de Notas dos Alunos</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Matemática</th>
-                <th>História</th>
-                <th>Ciências</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Alice</td>
-                <td>85</td>
-                <td>78</td>
-                <td>92</td>
-            </tr>
-            <tr>
-                <td>Charlie</td>
-                <td>95</td>
-                <td>92</td>
-                <td>85</td>
-            </tr>
-        </tbody>
-    </table>
-</body>
-</html>
 ```
 
 # CSS 
@@ -180,10 +142,36 @@ Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome 
   - Contudo, para este projeto, foi adotada uma abordagem mais indicada e utilizada em
 ambientes profissionais que facilita a criação dos contêineres e seu gerenciamento: o [Docker
 Compose](#Docker-Compose).
-		* Basicamente, o Docker Compose tem sua maior utilidade na sua capacidade de orquestrar mais serviços, inciando-os de forma predefinida e adequada, além de oferecer uma configuração unificada e escalonamento simples (facilitando a manutenção e a leitura, e sendo possível aumentar o número de instâncias de um serviço sob demanda). Em suma, ele torna bem mais fácl gerenciar ambientes complexos e com múltiplos serviços interdependentes.
+	
+ 	* Basicamente, o Docker Compose tem sua maior utilidade na sua capacidade de orquestrar mais serviços, inciando-os de forma predefinida e adequada, além de oferecer uma configuração unificada e escalonamento simples (facilitando a manutenção e a leitura, e sendo possível aumentar o número de instâncias de um serviço sob demanda). Em suma, ele torna bem mais fácl gerenciar ambientes complexos e com múltiplos serviços interdependentes.
 adequadamente sejam seguidos na devida ordem.
 
- analisar o código
+ ### Analisando brevemente o código YAML:
+* Ele define e configura 3 serviços: app, bd e pgadmin. Será explicado sobre o app.
+ ```ruby
+services:
+  app:                # primeiro serviço
+    build:            # build é responsável por especificar como construir a imagem do docker
+      context: .      # Diretório onde está localizado o Dockerfile
+      dockerfile: Dockerfile-app
+    ports:            # Mapeia a porta 5000 do host para a porta 5000 do contêiner.
+      - "5000:5000"
+    depends_on:       # Marca uma dependência, no caso, ´app´ depende de ´db´
+      - db
+    environment:      # Define as variáveis de ambiente
+      # Variáveis de ambiente no arquivo .env
+      FLASK_ENV: ${FLASK_ENV}
+      FLASK_APP: ${FLASK_APP}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:          # Conecta o diretório local com o contêiner. Pode-se alterar pelo contêiner de forma automatica com o repositório.
+      - ./app:/app    # Mapeamento do diretório local ./app para /app do contêiner
+    networks:         # Conecta o serviço à rede backend.
+      - backend
+```
 
  ``Docker`` ``Python`` ``HTML`` ``CSS`` ``SQL``
 
@@ -191,5 +179,3 @@ adequadamente sejam seguidos na devida ordem.
 
 
 # [Conclusão](#conclusão)
-
-<!-- OBJETIVO OBRIGATÓRIO: TERMINAR DE PREENCHER ESTA DOCUMENTAÇÃO -->
