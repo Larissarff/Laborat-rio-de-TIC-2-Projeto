@@ -4,8 +4,9 @@ ty# Projeto 02 - Mini-projeto Web utilizando Docker + PostgreSQL
 
 #### Membros da Equipe:
 
-COLOCAR AS MATRÍCULAS E NOMES DE CADA INTEGRANTE AQUI.
-<!-- OBJETIVO OBRIGATÓRIO: TERMINAR DE PREENCHER ESTA DOCUMENTAÇÃO -->
+`João Victor Andrade Lima - 06009925`
+`Larissa Rodrigues Fontoura Ferreira - 06011175`
+`Rafael de Alcantara Peçanha Fernandes - 06010477`
 
 ### Pré-instalação (Ubuntu - objetivo de avaliação optativo)
 
@@ -129,9 +130,66 @@ Já o arquivo styles.css será responsável pelo estilo (como seu próprio nome 
 ```
 
 # Python
-A linguagem python é utilizada pra se atribuir interatividade.
+A linguagem python é utilizada pra se atribuir interatividade á aplicação e promover a devida conecção entre os arquivos abordados até aqui.
 
-###
+🛠️ Realizamos algumas modificações:
+### Adição do módulo `re` no código:
+
+```ruby
+import os
+import psycopg2
+import re   # Nova importação que servirá para trabalhar com expressões que validem as consultas SQL
+from flask import Flask, render_template, request
+```
+### Modificações na conecção com o banco de dados:
+
+* Código original:
+```ruby
+conn = psycopg2.connect(
+    dbname="nome-do-banco-de-dados",
+    user="nome-do-usuario",
+    password="senha-usuario",
+    host="nome-do-container-do-banco-de-dados",
+    port="porta-do-banco-de-dados"
+)
+
+```
+   * Sem variáveis de ambiente, sem uma subrotina e com a variavel `conm` fora da sua melhor aplicação.
+
+* Código modificado:
+```ruby
+def get_db_connection():
+    conn = psycopg2.connect(
+        dbname=os.getenv('POSTGRES_DB'),
+        user=os.getenv('POSTGRES_USER'),
+        password=os.getenv('POSTGRES_PASSWORD'),
+        host=os.getenv('POSTGRES_HOST'),
+        port=os.getenv('POSTGRES_PORT')
+    )
+    return conn
+```
+   * Utilização de variáveis de ambiente (melhorando a segurança do código), dentro de uma subrotina que retorna a variavel `conm` de forma eficiente ao se estabelecer a conecção.
+
+### Adição de Validação de Consultas SQL:
+* Não havia, explicitamente, no código fonte um módulo de 
+
+```ruby
+SQL_PATTERN = re.compile(
+    r'^\s*SELECT\s+\*\s+FROM\s+(cliente|categoria|produto)\s*$',
+    re.IGNORECASE
+)
+
+if not SQL_PATTERN.match(comando_sql):
+    erro = (
+        "Query inválida, meu parceiro. "
+        "<strong>SQL injection aqui não!<strong>\n"
+        "<span style='color: black;'>Queries válidas:</span>\n"
+        "<span class='valid-query'>select * from cliente</span>\n"
+        "<span class='valid-query'>select * from categoria</span>\n"
+        "<span class='valid-query'>select * from produto</span>"
+    )
+
+```
 
 # [Funcionalidades e Demonstração da Aplicação](#funcionalidades-e-demonstração-da-aplicação)
 
