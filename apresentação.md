@@ -3,8 +3,6 @@
 - portabilidade: se pode transportar o contêiner para qqrl outra pessoa
 - automação: simplifica o processo de configuração e implantação. - tempo. - erros humanos.
 
-Claro! Vou explicar detalhadamente o funcionamento desse código Dockerfile, que é utilizado para criar uma imagem Docker. Vou abordar cada instrução, seu propósito e a razão de usá-la.
-
 ## Dockerfile Explicado
 
 ### 1. Imagem Base
