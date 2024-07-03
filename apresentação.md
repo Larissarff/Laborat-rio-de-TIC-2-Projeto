@@ -1,3 +1,8 @@
+# Vantagens uso Docker:
+- consistências: evita de não rodar em uma máquina e em outra sim. aplicação executada da mesma forma.
+- portabilidade: se pode transportar o contêiner para qqrl outra pessoa
+- automação: simplifica o processo de configuração e implantação. - tempo. - erros humanos.
+
 Claro! Vou explicar detalhadamente o funcionamento desse código Dockerfile, que é utilizado para criar uma imagem Docker. Vou abordar cada instrução, seu propósito e a razão de usá-la.
 
 ## Dockerfile Explicado
