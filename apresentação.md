@@ -1,4 +1,5 @@
 # Vantagens uso Docker:
+###Docker é uma ferramenta poderosa para desenvolver, testar e implantar aplicações de maneira eficiente e confiável.
 - consistências: evita de não rodar em uma máquina e em outra sim. aplicação executada da mesma forma.
 - portabilidade: se pode transportar o contêiner para qqrl outra pessoa
 - automação: simplifica o processo de configuração e implantação. - tempo. - erros humanos.
